@@ -1,0 +1,15 @@
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/bin/Debug/net7.0/LabWork
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/bin/Debug/net7.0/LabWork.deps.json
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/bin/Debug/net7.0/LabWork.runtimeconfig.json
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/bin/Debug/net7.0/LabWork.dll
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/bin/Debug/net7.0/LabWork.pdb
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.csproj.AssemblyReference.cache
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.GeneratedMSBuildEditorConfig.editorconfig
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.AssemblyInfoInputs.cache
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.AssemblyInfo.cs
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.csproj.CoreCompileInputs.cache
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.dll
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/refint/LabWork.dll
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.pdb
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/LabWork.genruntimeconfig.cache
+/Users/arturminnusin/RiderProjects/LabWork/LabWork/obj/Debug/net7.0/ref/LabWork.dll
