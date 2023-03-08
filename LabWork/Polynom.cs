@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+
 using System.Text;
 
 namespace labWork
@@ -6,6 +8,23 @@ namespace labWork
 	public class Polynom
 	{
         public PolynomEllement First { get; set; }
+
+        public Polynom(string file)
+        {
+            StreamReader sr = new StreamReader(file);
+            var line = sr.ReadLine();
+            
+            while (line != null)
+            {
+                Insert(line[0] - '0', (int)line[1] - '0', (int)line[2] - '0', (int)line[3] - '0');
+                line = sr.ReadLine();
+            }
+        }
+
+        public Polynom()
+        {
+            
+        }
 
         public void Insert(int coef, int deg1, int deg2, int deg3)
         {
@@ -47,7 +66,6 @@ namespace labWork
                             return;
                         }
                     }
-
                     else
                     {
                         if (s1 == s2)
@@ -101,6 +119,191 @@ namespace labWork
             throw new ArgumentException("В полиноме нет такого числа!");
         }
 
+        public void Derivate(int i)
+        {
+            if (i < 0 || i > 3)
+                throw new ArgumentException("Нет такой переменной!");
+            
+            var ElNow = First;
+            var ElNext = First;
+            
+            while (ElNext != null)
+            {
+                if (ElNow == ElNext)
+                {
+                    if (i == 1)
+                    {
+                        if (ElNext.Degree1 == 0)
+                        {
+                            ElNext = ElNext.NextPolynomEllement;
+                            First = ElNext;
+                        }
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree1;
+                            ElNext.Degree1 = ElNext.Degree1 - 1;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                    if (i == 2)
+                    {
+                        if (ElNext.Degree2 == 0)
+                        {
+                            ElNext = ElNext.NextPolynomEllement;
+                            First = ElNext;
+                        }
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree2;
+                            ElNext.Degree2 = ElNext.Degree2 - 1;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                    if (i == 3)
+                    {
+                        if (ElNext.Degree3 == 0)
+                        {
+                            ElNext = ElNext.NextPolynomEllement;
+                            First = ElNext;
+                        }
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree3;
+                            ElNext.Degree3 = ElNext.Degree3 - 1;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                }
+                else
+                {
+                    if (i == 1)
+                    {
+                        if (ElNext.Degree1 == 0)
+                        {
+                            if (ElNext.NextPolynomEllement == null)
+                            {
+                                ElNow.NextPolynomEllement = null;
+                                return;
+                            }
+                            else
+                            {
+                                ElNow.NextPolynomEllement = ElNext.NextPolynomEllement;
+                            }
+                        }
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree1;
+                            ElNext.Degree1 = ElNext.Degree1 - 1;
+                            ElNow = ElNext;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                    if (i == 2)
+                    {
+                        if (ElNext.Degree2 == 0)
+                        {
+                            if (ElNext.NextPolynomEllement == null)
+                            {
+                                ElNow.NextPolynomEllement = null;
+                                return;
+                            }
+                            else
+                            {
+                                ElNow.NextPolynomEllement = ElNext.NextPolynomEllement;
+                            }
+                        }
+                            
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree2;
+                            ElNext.Degree2 = ElNext.Degree2 - 1;
+                            ElNow = ElNext;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                    if (i == 3)
+                    {
+                        if (ElNext.Degree3 == 0)
+                        {
+                            if (ElNext.NextPolynomEllement == null)
+                            {
+                                ElNow.NextPolynomEllement = null;
+                                return;
+                            }
+                            else
+                            {
+                                ElNow.NextPolynomEllement = ElNext.NextPolynomEllement;
+                            }
+                        }
+                        else
+                        {
+                            ElNext.Index = ElNext.Index * ElNext.Degree3;
+                            ElNext.Degree3 = ElNext.Degree3 - 1;
+                            ElNow = ElNext;
+                            ElNext = ElNext.NextPolynomEllement;
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        public void Add(Polynom polynom)
+        {
+            var elNowThis = this.First;
+            var elNextThis = this.First;
+            var elNowPol = polynom.First;
+            
+            while (true)
+            {
+                if (elNowPol == null)
+                    break;
+                
+                if (elNextThis == null)
+                {
+                    elNextThis = elNowPol;
+                    break;
+                }
+                
+                int s1 = int.Parse((elNextThis.Degree1).ToString() + (elNextThis.Degree2).ToString() + (elNextThis.Degree3).ToString());
+                int s2 = int.Parse((elNowPol.Degree1).ToString() + (elNowPol.Degree2).ToString() + (elNowPol.Degree3).ToString());
+
+                if (elNowThis == elNextThis)
+                {
+                    if (s1 > s2)
+                        elNextThis = elNowThis.NextPolynomEllement;
+                    
+                    if (s1 < s2)
+                    {
+                        elNowThis = this.First = elNowPol;
+                        elNowThis.NextPolynomEllement = elNextThis;
+                        elNowPol = elNowPol.NextPolynomEllement;
+                    }
+
+                    if (s1 == s2)
+                        elNowPol = elNowPol.NextPolynomEllement;
+                }
+                else
+                {
+                    if (s1 > s2)
+                    {
+                        elNowThis = elNowThis.NextPolynomEllement;
+                        elNextThis = elNextThis.NextPolynomEllement;
+                    }
+                        
+                    if (s1 < s2)
+                    {
+                        elNowThis.NextPolynomEllement = elNowPol;
+                        elNowThis.NextPolynomEllement.NextPolynomEllement = elNextThis;
+                        elNextThis = elNextThis.NextPolynomEllement;
+                        elNowPol = elNowPol.NextPolynomEllement;
+                    }
+                    if (s1 == s2)
+                        elNowPol = elNowPol.NextPolynomEllement;
+                }
+            }
+        }
+        
         public int[] MinCoef()
         {
             var elNow = First;
