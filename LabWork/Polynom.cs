@@ -47,7 +47,7 @@ namespace labWork
                 var elNow = First;
                 var elNext = First;
 
-                while (elNext != null) //elNow.NextPolynomEllement
+                while (elNext != null) 
                 {
                     int s1 = int.Parse((elNext.Degree1).ToString() + (elNext.Degree2).ToString() + (elNext.Degree3).ToString());
                     int s2 = int.Parse((addEllement.Degree1).ToString() + (addEllement.Degree2).ToString() + (addEllement.Degree3).ToString());
@@ -56,8 +56,10 @@ namespace labWork
                     {
                         if (s1 == s2)
                             return;
+                        
                         if (s1 > s2)
                             elNext = elNext.NextPolynomEllement;
+                        
                         if(s1 < s2)
                         {
                             var c = First;
@@ -339,6 +341,5 @@ namespace labWork
 
             return sb.ToString();
         }
-	// Привет!!!!!!!!!!
     }
 }
